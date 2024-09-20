@@ -1,0 +1,56 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="container my-5">
+    <h1 class="text-center" style="color: #006400;">Featured Products</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Original Price</th>
+                    <th scope="col">Discount Price</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for featured_product in featured_products %}
+                    <tr>
+                        <td>{{ featured_product.product.name }}</td>
+                        <td>{{ featured_product.product.price }}</td>
+                        <td>{{ featured_product.disount_price }}</td>
+                        <td>
+                            <a href="/dashboard/featured-products/{{featured_product.id}}/edit" class="btn btn-sm btn-warning mt-2" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <button class="btn btn-danger btn-sm mt-2" onclick="confirmDelete({{ featured_product.id }})" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>   
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(featuredProductId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this featured product!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/dashboard/featured-products/" + featuredProductId + "/delete/";
+            }
+        });
+    }
+</script>
+{% endblock main_content %}

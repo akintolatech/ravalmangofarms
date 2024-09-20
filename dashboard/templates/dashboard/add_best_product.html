@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+
+{% block main_content %}
+<div class="container mt-4">
+    <h2>Add Best Product</h2>
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
+    <form method="post" action="/dashboard/add_best_product/">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="product_id">Select Product:</label>
+            <select class="form-control" id="product_id" name="product_id">
+                {% for product in products %}
+                <option value="{{ product.id }}">{{ product.name }}/ {{product.price}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-dark">Add</button>
+    </form>
+</div>
+{% endblock main_content %}
+
+
+
+

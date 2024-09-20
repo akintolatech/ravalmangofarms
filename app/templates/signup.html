@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+signup
+{% endblock title %}
+{% block main_content %}
+
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card" style="margin-top: 120px;">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-4 ">Sign Up</h3>
+          <form method="POST" action="/signup/">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+{% if error_message and redirect_url %}
+<script>
+  Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: "{{ error_message }}",
+  showClass: {
+    popup: 'animate__animated animate__zoomIn'
+  },
+  hideClass: {
+    popup: 'animate__animated animate__zoomOut'
+  },
+  iconHtml: '<i class="fas fa-times-circle animate__animated animate__bounce"></i>',
+  showConfirmButton: true,
+  confirmButtonText: 'OK',
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location.href = "/{{ redirect_url }}";
+  }
+});
+</script>
+
+{% elif success_message and redirect_url %}
+<script>
+  Swal.fire({
+    icon: 'success',
+    title: 'Success!',
+    text: "{{ success_message }}",
+    showClass: {
+      popup: 'animate__animated animate__zoomIn'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__zoomOut'
+    },
+    iconHtml: '<i class="fas fa-check-circle animate__animated animate__bounce"></i>',
+    showConfirmButton: true,
+    confirmButtonText: 'OK',      
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "/{{ redirect_url }}";
+    }
+  });
+</script>
+{% endif %}
+
+
+{% endblock main_content %}

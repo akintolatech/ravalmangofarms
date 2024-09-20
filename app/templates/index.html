@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Home</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Navbar start -->
+        <div class="container-fluid fixed-top">
+            <div class="container topbar bg-primary d-none d-lg-block">
+                <div class="d-flex justify-content-between">
+                    <div class="top-info ps-2">
+                        <small class="me-3">
+                            <i class="fas fa-map-marker-alt me-2 text-secondary"></i> 
+                            <a href="https://g.co/kgs/QCzzzjH" target="_blank" class="text-white">Raval Mango farm, Pakistan</a>
+                          </small>
+                          <small class="me-3">
+                            <i class="fas fa-envelope me-2 text-secondary"></i>
+                            <a href="mailto:Ravalmango72@gmail.com" class="text-white">Ravalmango72@gmail.com</a>
+                          </small>
+                        </a></small>
+                    </div>
+                    <div class="top-link pe-2">
+                        <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
+                        <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
+                        <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container px-0">
+                <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                    <a href="index.html" class="navbar-brand">
+                        <img src="../static/img/mangologo.png" alt="Fruitables Logo" class="logo" style="width: 90px; height: 80px;">
+                    </a>
+
+                    <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars text-primary"></span>
+                    </button>
+                    <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                        <div class="navbar-nav mx-auto">
+                            <a href="/" class="nav-item nav-link active">Home</a>
+                            <!-- <a href="/signup" class="nav-item nav-link ">Signup</a> -->
+
+                          
+                            <a href="/shop" class="nav-item nav-link">Shop</a>
+                                                      
+                            
+                            <a href="/contact" class="nav-item nav-link">Contact</a>
+                        </div>
+
+                        <div class="d-flex m-3 me-0">
+                            <a href="/cart" class="position-relative me-4 my-auto">
+                                <i class="fa fa-shopping-bag fa-2x"></i>
+                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{product_count}}</span>
+                            </a>
+                            <a href="/Adminlogin" class="my-auto">
+                                <i class="fas fa-columns fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar End -->
+
+
+        <!-- Modal Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal Search End -->
+
+
+        <!-- Hero Start -->
+        <div class="container-fluid py-5 mb-5 hero-header">
+            <div class="container py-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-md-12 col-lg-7">
+                        <h4 class="mb-3 text-secondary">100% Fresh Mangoes</h4>
+                        <h1 class="mb-5 display-3 text-primary">Fresh, Dried & Mango Plants</h1>
+                       
+                    </div>
+
+                    <div class="col-md-12 col-lg-5">
+                        <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
+                            <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item active rounded">
+                                    <img src="https://media.istockphoto.com/id/168278888/photo/fresh-slices-of-mango-on-a-bed-of-leaves.jpg?b=1&s=612x612&w=0&k=20&c=u6LW6tUHkucDF6sRO-Hpv9FGtfsCGs7HMwvm7PC8jGU=" class="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide">
+                                    <a href="#" class="btn px-4 py-2 text-white rounded">Fresh Mango</a>
+                                </div>
+                                <div class="carousel-item rounded">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVqofTDwgDGtmOU9i98Z7TDuZOh3UKFscqww&usqp=CAU" class="img-fluid w-100 h-100 rounded" alt="Second slide">
+                                    <a href="#" class="btn px-4 py-2 text-white rounded">Dried Mango</a>
+                                </div>
+
+                                <div class="carousel-item rounded">
+                                    <img src="data:image/jpeg;base64,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" class="img-fluid w-100 h-100 rounded" alt="Second slide">
+                                    <a href="#" class="btn px-4 py-2 text-white rounded">Mango Plant</a>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+
+
+         <!-- Bestsaler Product Start -->
+         <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto mb-5" style="max-width: 700px;">
+                    <h1 class="display-4">Bestseller Products</h1>
+                    <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
+                </div>
+                <div class="row g-4">
+                    {% for BestProduct in BestProducts %}
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="p-4 rounded bg-light">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <img src="../../media/{{BestProduct.products.file}}" style="width: 120px;height: 120px;border-radius: 50%;" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <a href="#" class="h5">{{BestProduct.products.name}}</a>
+                                    <div class="d-flex my-3">
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h4 class="mb-3">{{BestProduct.products.price}} $</h4>
+                                    <a href="/shop-details/{{BestProduct.products.id}}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                   
+                </div>
+            </div>
+        </div>
+        <!-- Bestsaler Product End -->
+        
+                
+
+
+        <!-- Featurs Section Start -->
+        <div class="container-fluid featurs py-5">
+            <div class="container py-5">
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="featurs-item text-center rounded bg-light p-4">
+                            <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                                <i class="fas fa-car-side fa-3x text-white"></i>
+                            </div>
+                            <div class="featurs-content text-center">
+                                <h5>Free Shipping</h5>
+                                <p class="mb-0">Free on order over $300</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="featurs-item text-center rounded bg-light p-4">
+                            <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                                <i class="fas fa-user-shield fa-3x text-white"></i>
+                            </div>
+                            <div class="featurs-content text-center">
+                                <h5>Security Payment</h5>
+                                <p class="mb-0">100% security payment</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="featurs-item text-center rounded bg-light p-4">
+                            <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                                <i class="fas fa-exchange-alt fa-3x text-white"></i>
+                            </div>
+                            <div class="featurs-content text-center">
+                                <h5>30 Day Return</h5>
+                                <p class="mb-0">30 day money guarantee</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="featurs-item text-center rounded bg-light p-4">
+                            <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                                <i class="fa fa-phone-alt fa-3x text-white"></i>
+                            </div>
+                            <div class="featurs-content text-center">
+                                <h5>24/7 Support</h5>
+                                <p class="mb-0">Support every time fast</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Featurs Section End -->
+
+
+
+        <!-- Fruits Shop Start-->
+        <div class="container-fluid fruite py-5">
+            <div class="container py-5">
+                <div class="tab-class text-center">
+                    <div class="row g-4">
+                        <div class="col-lg-4 text-start">
+                            <h1>Our Fresh Products</h1>
+                        </div>
+                        <div class="col-lg-8 text-end">
+                            <ul class="nav nav-pills d-inline-flex text-center mb-5">
+
+                                <li class="nav-item">
+                                    <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
+                                        <span class="text-dark" style="width: 130px;">All Products</span>
+                                    </a>
+                                </li>
+                                {% for category in AllCategory %}
+                                <li class="nav-item">
+                                    <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-{{ category.id }}">
+                                        <span class="text-dark" style="width: 130px;">{{ category.name }}</span>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="row g-4">
+
+                                        {% for products in AllProducts %}
+                                        <div class="col-md-6 col-lg-4 col-xl-3">
+                                            <div class="rounded position-relative fruite-item">
+                                                <div class="fruite-img">
+                                                    <img src="../../media/{{products.file}}" class="img-fluid w-100 rounded-top" alt="">
+                                                </div>
+                                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{products.category.name}}</div>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                    <h4>{{products.name}}</h4>
+                                                    <p>{{products.description}}</p>
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <p class="text-dark fs-5 fw-bold mb-0">${{products.price}} / {{products.kg}}</p>
+                                                        <a href="/shop-details/{{products.id}}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% for category in AllCategory %}
+                        <div id="tab-{{ category.id }}" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                {% for product in category.products.all %}
+                                <div class="col-md-6 col-lg-4 col-xl-3">
+                                    <div class="rounded position-relative fruite-item">
+                                        <div class="fruite-img">
+                                            <img src="../../media/{{product.file}}" class="img-fluid w-100 rounded-top" alt="">
+                                        </div>
+                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{ category.name }}</div>
+                                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                            <h4>{{ product.name }}</h4>
+                                            <p>{{ product.description }}</p>
+                                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                                <p class="text-dark fs-5 fw-bold mb-0">${{ product.price }} / kg</p>
+                                                <a href="/shop-details/{{product.id}}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                       
+                    </div>
+                </div>      
+            </div>
+        </div>
+        <!-- Fruits Shop End-->
+
+
+        <!-- Featurs Start -->
+        <div class="container-fluid service py-5">
+            <div class="container py-5">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <a href="#">
+                            <div class="service-item bg-secondary rounded border border-secondary">
+                                <img src="img/featur-1.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <div class="px-4 rounded-bottom">
+                                    <div class="service-content bg-primary text-center p-4 rounded">
+                                        <h5 class="text-white">Fresh Apples</h5>
+                                        <h3 class="mb-0">20% OFF</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <a href="#">
+                            <div class="service-item bg-dark rounded border border-dark">
+                                <img src="img/featur-2.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <div class="px-4 rounded-bottom">
+                                    <div class="service-content bg-light text-center p-4 rounded">
+                                        <h5 class="text-primary">Tasty Fruits</h5>
+                                        <h3 class="mb-0">Free delivery</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <a href="#">
+                            <div class="service-item bg-primary rounded border border-primary">
+                                <img src="img/featur-3.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <div class="px-4 rounded-bottom">
+                                    <div class="service-content bg-secondary text-center p-4 rounded">
+                                        <h5 class="text-white">Exotic Vegitable</h5>
+                                        <h3 class="mb-0">Discount 30$</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Featurs End -->
+
+
+        <!-- Vesitable Shop Start-->
+        <div class="container-fluid vesitable py-5">
+            <div class="container py-5">
+                <h1 class="mb-0">Fresh Mango Products</h1>
+
+                <div class="owl-carousel vegetable-carousel justify-content-center">
+                    {% for Product in ProductData %}
+
+                    <div class="border border-primary rounded position-relative vesitable-item">
+
+                        <div class="vesitable-img">
+                            <img src="../../media/{{Product.file}}" class="img-fluid w-100 rounded-top" alt="">
+                        </div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">{{Product.category}}</div>
+                        <div class="p-4 rounded-bottom">
+                            <h4>{{Product.name}}</h4>
+                            <p>{{Product.description}}</p>
+                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                <p class="text-dark fs-5 fw-bold mb-0">${{Product.price}} / {{Product.kg}}</p>
+                                <a href="/shop-details/{{Product.id}}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                  
+                </div>
+            </div>
+        </div>
+        <!-- Vesitable Shop End -->
+
+
+        <!-- Banner Section Start-->
+        <div class="container-fluid banner bg-secondary my-5">
+            <div class="container py-5">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="py-4">
+                            <h1 class="display-3 text-white">Fresh Mangoes</h1>
+                            <p class="fw-normal display-3 text-dark mb-4">in Our Store</p>
+                            <p class="mb-4 text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
+                            <a href="#" class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">BUY</a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="position-relative">
+                            <img src="img/baner-1.png" class="img-fluid w-100 rounded" alt="">
+                            <div class="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute" style="width: 140px; height: 140px; top: 0; left: 0;">
+                                <h1 style="font-size: 100px;">1</h1>
+                                <div class="d-flex flex-column">
+                                    <span class="h2 mb-0">50$</span>
+                                    <span class="h4 text-muted mb-0">kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Banner Section End -->
+
+       
+
+        <!-- Fact Start -->
+        <div class="container-fluid py-5">
+            <div class="container">
+                <div class="bg-light p-5 rounded">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="counter bg-white rounded p-5">
+                                <i class="fa fa-users text-secondary"></i>
+                                <h4>satisfied customers</h4>
+                                <h1>1963</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="counter bg-white rounded p-5">
+                                <i class="fa fa-users text-secondary"></i>
+                                <h4>quality of service</h4>
+                                <h1>99%</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="counter bg-white rounded p-5">
+                                <i class="fa fa-users text-secondary"></i>
+                                <h4>quality certificates</h4>
+                                <h1>33</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="counter bg-white rounded p-5">
+                                <i class="fa fa-users text-secondary"></i>
+                                <h4>Available Products</h4>
+                                <h1>789</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fact Start -->
+
+
+        <!-- Tastimonial Start -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="testimonial-header text-center">
+                    <h4 class="text-primary">Our Testimonial</h4>
+                    <h1 class="display-5 mb-5 text-dark">Our Client Saying!</h1>
+                </div>
+                <div class="owl-carousel testimonial-carousel">
+                    <div class="testimonial-item img-border-radius bg-light rounded p-4">
+                        <div class="position-relative">
+                            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+                            <div class="mb-4 pb-4 border-bottom border-secondary">
+                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center flex-nowrap">
+                                <div class="bg-secondary rounded">
+                                    <img src="{% static 'img/testimonial-1.jpg' %}" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                                </div>
+                                <div class="ms-4 d-block">
+                                    <h4 class="text-dark">Client Name</h4>
+                                    <p class="m-0 pb-3">Profession</p>
+                                    <div class="d-flex pe-5">
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item img-border-radius bg-light rounded p-4">
+                        <div class="position-relative">
+                            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+                            <div class="mb-4 pb-4 border-bottom border-secondary">
+                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center flex-nowrap">
+                                <div class="bg-secondary rounded">
+                                    <img src="{% static 'img/testimonial-1.jpg' %}" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                                </div>
+                                <div class="ms-4 d-block">
+                                    <h4 class="text-dark">Client Name</h4>
+                                    <p class="m-0 pb-3">Profession</p>
+                                    <div class="d-flex pe-5">
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item img-border-radius bg-light rounded p-4">
+                        <div class="position-relative">
+                            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+                            <div class="mb-4 pb-4 border-bottom border-secondary">
+                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center flex-nowrap">
+                                <div class="bg-secondary rounded">
+                                    <img src="{% static 'img/testimonial-1.jpg' %}" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                                </div>
+                                <div class="ms-4 d-block">
+                                    <h4 class="text-dark">Client Name</h4>
+                                    <p class="m-0 pb-3">Profession</p>
+                                    <div class="d-flex pe-5">
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                        <i class="fas fa-star text-primary"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tastimonial End -->
+
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+            <div class="container py-5">
+                <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
+                    <div class="row g-4">
+                        <div class="col-lg-3">
+                            <a href="#">
+                                <a href="/" class="navbar-brand">
+                                    <img src="../static/img/mangologo.png" alt="Fruitables Logo" class="logo" style="width: 90px; height: 80px;">
+                                </a>
+                                <p class="text-secondary mb-0">Fresh Mangoes</p>
+                            </a>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="position-relative mx-auto">
+                                <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="number" placeholder="Your Email">
+                                <button type="submit" class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0;">Subscribe Now</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="d-flex justify-content-end pt-3">
+                                <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" target="_blank" href="https://www.tiktok.com/@ravalmango5?_t=8mhSWkPmPcP&_r=1"><i class="fab fa-tiktok"></i></a>
+                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" target="_blank" href="https://www.facebook.com/ravalmango5?mibextid=LQQJ4d"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" target="_blank" href="https://youtube.com/@ravalmango?si=lQKrvy_r70oNlAXC"><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-outline-secondary btn-md-square rounded-circle" target="_blank" href="https://www.instagram.com/invites/contact/?igsh=dayhewep1qau&utm_content=l1exhaq"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-light mb-3">Why People Like us!</h4>
+                            <p class="mb-4">typesetting, remaining essentially unchanged. It was 
+                                popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
+                            <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex flex-column text-start footer-item">
+                            <h4 class="text-light mb-3">Shop Info</h4>
+                            <a class="btn-link" href="">About Us</a>
+                            <a class="btn-link" href="">Contact Us</a>
+                            <a class="btn-link" href="">Privacy Policy</a>
+                            <a class="btn-link" href="">Terms & Condition</a>
+                            <a class="btn-link" href="">Return Policy</a>
+                            <a class="btn-link" href="">FAQs & Help</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex flex-column text-start footer-item">
+                            <h4 class="text-light mb-3">Account</h4>
+                            <a class="btn-link" href="">My Account</a>
+                            <a class="btn-link" href="">Shop details</a>
+                            <a class="btn-link" href="">Shopping Cart</a>
+                            <a class="btn-link" href="">Wishlist</a>
+                            <a class="btn-link" href="">Order History</a>
+                            <a class="btn-link" href="">International Orders</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-light mb-3">Contact</h4>
+                            <p>Address: 1429 Netus Rd, NY 48247</p>
+                            <p>Email: Example@gmail.com</p>
+                            <p>Phone: +0123 4567 8910</p>
+                            <p>Payment Accepted</p>
+                            <img src="{% static 'img/payment.png' %}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer End -->
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright bg-dark py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
+                    </div>
+                    <div class="col-md-6 my-auto text-center text-md-end text-white">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">Shoaib</a> Distributed By <a class="border-bottom" href="#">Shoaib</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script src="http://localhost:35729/livereload.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+
+{% if message %}
+<script>
+  Swal.fire({
+  icon: 'success',
+  title: 'Success!',
+  text: "{{ message.success }}",
+  showClass: {
+    popup: 'animate__animated animate__zoomIn'
+  },
+  hideClass: {
+    popup: 'animate__animated animate__zoomOut'
+  },
+  iconHtml: '<i class="fas fa-check-circle animate__animated animate__bounce"></i>',
+  showConfirmButton: true,
+  confirmButtonText: 'OK',
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location.href = "/";
+  }
+});
+</script>
+
+{% endif %}
+
+
+
+
+    </body>
+
+</html>
+

@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block main_content %}
+  <div class="container mt-5">
+    <h2 class="mb-4">Add New Category</h2>
+    <form method="post" action="/dashboard/add-category/">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_name">Name:</label>
+        <input type="text" class="form-control" id="id_name" name="name" placeholder="Enter category name">
+      </div>
+      <button type="submit" class="btn btn-dark">Add Category</button>
+    </form>
+  </div>
+{% endblock main_content %}
+

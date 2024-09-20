@@ -1,0 +1,70 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4 text-center">User Profile Details</h1>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <th>First Name</th>
+                                <td>{{ user_profile.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Last Name</th>
+                                <td>{{ user_profile.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Company Name</th>
+                                <td>{{ user_profile.company_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td>{{ user_profile.address }}</td>
+                            </tr>
+                            <tr>
+                                <th>City</th>
+                                <td>{{ user_profile.city }}</td>
+                            </tr>
+                            <tr>
+                                <th>Country</th>
+                                <td>{{ user_profile.country }}</td>
+                            </tr>
+                            <tr>
+                                <th>Postcode</th>
+                                <td>{{ user_profile.postcode }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mobile</th>
+                                <td>{{ user_profile.mobile }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ user_profile.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Notes</th>
+                                <td>{{ user_profile.notes }}</td>
+                            </tr>
+                            <tr>
+                                <th>File</th>
+                                <td>
+                                    {% if user_profile.file %}
+                                    <a href="{{ user_profile.file.url }}" target="_blank">View File</a>
+                                    {% else %}
+                                    No file uploaded.
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main_content %}

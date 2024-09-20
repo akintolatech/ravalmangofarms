@@ -1,0 +1,80 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4 text-center">Orders</h1>
+            <div class="table-responsive">
+                <table class="table table-dark table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Email</th>
+                            <th>Final Products</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in email_to_products %}
+                        <tr>
+                            <td>
+                                <a href="/dashboard/customer-profile/{{item.profile_id}}" style="color: #ffffff;">
+                                    {{ item.email }}
+                                </a>
+                            </td>
+                            <td>
+                                {% if item.products %}
+                                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                    {% for product in item.products %}
+                                    <li class="mb-2 d-flex align-items-center">
+                                        <img src="{{ product.uploaded_file.url }}" alt="Product Image" class="img-thumbnail rounded-circle mr-2" style="width: 50px; height: 50px;">
+                                        <div>
+                                            <strong>{{ product.product_name }}</strong><br>
+                                            Price: {{ product.price }}<br>
+                                            Quantity: {{ product.quantity }}<br>
+                                            Total Price: {{ product.total_price }}<br>
+                                            Final Price: {{ product.final_price }}
+                                        </div>
+                                    </li>
+                                    <hr>
+                                    {% endfor %}
+                                </ul>
+                                {% else %}
+                                <p>No products found for this user.</p>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ item.profile_id }}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(profileId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this user!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/dashboard/delete-user/" + encodeURIComponent(profileId);
+            }
+        });
+    }
+</script>
+
+{% endblock main_content %}

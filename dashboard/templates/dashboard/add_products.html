@@ -1,0 +1,58 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header" style="background-color: #006400; color: #ffffff;">
+                    <h3 class="mb-0 text-center">Add Product</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" action="/dashboard/add-products/">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name" style="color: #006400;">Name:</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" style="color: #006400;">Description:</label>
+                            <textarea id="description" name="description" class="form-control" style="color: #006400;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="price" style="color: #006400;">Price:</label>
+                            <input type="number" id="price" name="price" step="0.01" class="form-control" required style="color: #006400;">
+                        </div>
+                        <div class="form-group">
+                            <label for="category" style="color: #006400;">Category:</label>
+                            <select id="category" name="category" class="form-control" style="color: #006400;">
+                                <option value="">Select Category</option>
+                                {% for category in categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="kg" style="color: #006400;">KG:</label>
+                            <select id="kg" name="kg" class="form-control" style="color: #006400;">
+                                <option value="">Select KG</option>
+                                {% for kg in kgs %}
+                                    <option value="{{ kg.id }}">{{ kg.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="file" style="color: #006400;">File:</label>
+                            <input type="file" id="file" name="file" class="form-control-file" style="color: #006400;">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" style="background-color: #006400;">Add Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}

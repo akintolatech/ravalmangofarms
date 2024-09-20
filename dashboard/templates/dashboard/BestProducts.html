@@ -1,0 +1,51 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="container">
+    <h2>Best Products</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in best_products %}
+            <tr>
+                <td>{{ product.products.name }}</td>
+                <td>${{ product.products.price }}</td>
+                <td>
+                    <button onclick="confirmDelete('{{ product.id }}')" class="btn btn-danger">
+                        <i class="fa fa-trash"></i> <!-- Font Awesome trash icon -->
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+<script>
+    function confirmDelete(productId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this product!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545', // Red color for confirm button
+            cancelButtonColor: '#007bff', // Blue color for cancel button
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/dashboard/best_products/" + productId + "/delete";
+            }
+        });
+    }
+</script>
+{% endblock main_content %}
