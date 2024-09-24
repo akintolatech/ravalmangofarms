@@ -15,7 +15,6 @@ urlpatterns = [
     # path('logout/',logout,name="logout-function"),
     path('Adminlogin/', Adminlogin, name="adminlogin-page"),
     path('Adminlogout/', Adminlogout, name="adminlogout-function"),
-
     # For Cart functionlity url
     path('cart/', cart_view, name='cart'),
     path('shop-details/<int:Product_id>/cart/', add_to_cart, name="add_to_cart"),
